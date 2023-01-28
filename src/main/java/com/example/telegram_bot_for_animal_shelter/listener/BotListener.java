@@ -4,12 +4,12 @@ import com.pengrad.telegrambot.TelegramBot;
 import com.pengrad.telegrambot.UpdatesListener;
 import com.pengrad.telegrambot.model.Update;
 import com.pengrad.telegrambot.request.SendMessage;
-import jakarta.annotation.PostConstruct;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.stereotype.Service;
 
 import java.util.List;
-
+@Service
 public class BotListener implements UpdatesListener {
 
     private final Logger logger = LoggerFactory.getLogger(BotListener.class);
@@ -27,7 +27,10 @@ public class BotListener implements UpdatesListener {
     public int process(List<Update> list) {
         list.stream()
                 .filter(update -> update.message() != null)
-                .forEach(this::processUpdate);
+                .forEach(update -> {
+                    logger.info("Processing update: {}", update);
+                    processUpdate(update);
+                });
         return CONFIRMED_UPDATES_ALL;
     }
 
