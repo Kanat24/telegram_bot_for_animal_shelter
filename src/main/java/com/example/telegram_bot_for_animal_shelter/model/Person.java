@@ -12,7 +12,7 @@ public class Person {
     private Long id;
     private String name;
     private String phoneNumber;
-    private Boolean adoptiveParent;
+    private PersonStatus personStatus;
     @OneToMany
     private Set <Animal> animalSet;
 

@@ -12,6 +12,7 @@ public class Animal {
     private Long id;
     private String name;
     private AnimalType animalType;
+    private Boolean available;
     @ManyToOne
     @JoinColumn(name = "person_id")
     private Person person;
